@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Jqueryui";
+}
+
+<h2>Jqueryui</h2>
+
+
+<!--Datepicker creado con JQuery UI-->
+<label for="Calendario">Seleccione Fecha:</label>
+<input type="text" id="Calendario">
+
+
+
+@section scripts
+{
+<script>
+
+    $(document).ready(function(){
+
+        $('#Calendario').datepicker();
+
+    });
+
+</script>
+
+}

@@ -26,5 +26,12 @@ namespace StudioLab.Controllers
 
             return View();
         }
+
+        public ActionResult Jqueryui()
+        {
+            ViewBag.Message = "Page for Jquery UI examples.";
+
+            return View();
+        }
     }
 }
