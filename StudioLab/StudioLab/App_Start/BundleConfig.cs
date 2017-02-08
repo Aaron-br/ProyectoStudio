@@ -25,7 +25,8 @@ namespace StudioLab
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/MisEstilosGeneral.css"));
             bundles.Add(new StyleBundle("~/Content/cssjqueryUI").Include(
                      "~/Content/themes/base/*.css"));
         }

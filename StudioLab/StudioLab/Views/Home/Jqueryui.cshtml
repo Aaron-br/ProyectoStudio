@@ -11,6 +11,14 @@
 <label for="Calendario">Seleccione Fecha:</label>
 <input type="text" id="Calendario">
 
+<br />
+<br />
+
+<!-- Draggable con JQuery UI-->
+<div id="mover" class="ui-widget-content">
+    <p>Podemos mover haciendo drag</p>
+</div>
+
 
 
 @section scripts
@@ -24,6 +32,16 @@
         $('#Calendario').datepicker();
         $('#Calendario').datepicker("option","showAnim","clip");
         $('#Calendario').datepicker("option", "dateFormat", "dd-MM-yy");
+
+        //Draggable
+        $('#mover').draggable(
+
+            {axis:"y"} //Solo se moverá en el eje Y
+
+            );
+
+
+
     });
 
 </script>
