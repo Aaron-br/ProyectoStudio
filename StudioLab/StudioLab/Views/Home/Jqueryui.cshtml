@@ -36,7 +36,21 @@
         //Draggable
         $('#mover').draggable(
 
-            {axis:"y"} //Solo se moverá en el eje Y
+            {
+                axis: "y", //Solo se moverá en el eje Y
+                cursor: "move", //crosshair
+                revert: true,
+                start: function ()
+                {
+                    $('#mover').text('Al iniciar');
+                },
+                drag: function () {
+                    $('#mover').text('Al mover');
+                },
+                stop: function () {
+                    $('#mover').text('Al finalizar');
+                }
+            }
 
             );
 
