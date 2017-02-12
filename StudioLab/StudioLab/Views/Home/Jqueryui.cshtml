@@ -36,6 +36,24 @@
     </div>
 </div>
 
+<br />
+<br />
+
+<ol id="seleccionar">
+
+    <li class="ui-widget-content">Item 1</li>
+    <li class="ui-widget-content">Item 2</li>
+    <li class="ui-widget-content">Item 3</li>
+    <li class="ui-widget-content">Item 4</li>
+    <li class="ui-widget-content">Item 5</li>
+    <li class="ui-widget-content">Item 6</li>
+    <li class="ui-widget-content">Item 7</li>
+
+</ol>
+
+<div id="resultado"></div>
+
+
 @section scripts
 {
 <script>
@@ -93,6 +111,24 @@
 
         });
 
+
+        //Selectable
+        $('#seleccionar').selectable({
+
+            stop: function(){
+
+                var resultado = $('#resultado').empty();
+                $('.ui-selected', this).each(function() {
+                    /*Iterate through array or object */
+
+                    var index = $('#seleccionar li').index(this);
+                    resultado.append(' Seleccionó '+(index));
+
+                });
+            }
+
+
+        });
 
     });
 
