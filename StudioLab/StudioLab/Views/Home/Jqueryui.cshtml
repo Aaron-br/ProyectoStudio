@@ -27,6 +27,15 @@
     <p>Soltar aquí.</p>
 </div>
 
+<br />
+<br />
+
+<div id="contenedor">
+    <div id="resizable" class="ui-widget-content">
+        <p>Cambiar tamaños.</p>
+    </div>
+</div>
+
 @section scripts
 {
 <script>
@@ -75,6 +84,15 @@
             }
 
         });
+
+        //Resizable
+        $('#resizable').resizable({
+
+            animate: true,
+            containment: '#contenedor'
+
+        });
+
 
     });
 

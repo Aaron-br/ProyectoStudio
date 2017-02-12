@@ -24,3 +24,18 @@
 
     background-color: blue;
 }
+
+#resizable {
+
+    width: 220px;
+    height: 220px;
+    background-color: #EBEBEB;
+}
+
+#contenedor {
+
+    width: 400px;
+    height: 400px;
+    border: solid 2px black;
+
+}
