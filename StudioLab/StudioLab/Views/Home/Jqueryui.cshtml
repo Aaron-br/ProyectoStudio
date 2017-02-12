@@ -19,7 +19,13 @@
     <p>Podemos mover haciendo drag</p>
 </div>
 
+<div id="mover2" class="ui-widget-content">
+    <p>Podemos mover haciendo drag</p>
+</div>
 
+<div id="soltar">
+    <p>Soltar aquí.</p>
+</div>
 
 @section scripts
 {
@@ -29,14 +35,15 @@
 
     $(document).ready(function(){
 
+
+        //DatePicker JQuery UI
         $('#Calendario').datepicker();
         $('#Calendario').datepicker("option","showAnim","clip");
         $('#Calendario').datepicker("option", "dateFormat", "dd-MM-yy");
 
         //Draggable
-        $('#mover').draggable(
+        $('#mover').draggable({
 
-            {
                 axis: "y", //Solo se moverá en el eje Y
                 cursor: "move", //crosshair
                 revert: true,
@@ -50,11 +57,24 @@
                 stop: function () {
                     $('#mover').text('Al finalizar');
                 }
+
+        });
+
+        $('#mover2').draggable();
+
+        //Droppable
+        $('#soltar').droppable({
+
+
+            hoverClass: "hover",
+            accept: "#mover",
+            drop: function (event, ui) {
+
+                $(this).addClass('soltado').find("p").text('Elemento soltado');
+
             }
 
-            );
-
-
+        });
 
     });
 

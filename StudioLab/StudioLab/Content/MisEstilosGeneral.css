@@ -1,10 +1,26 @@
 ﻿
 /*Estilos generales para el proyecto StudioLab*/
 
-#mover {
+#mover, #mover2 {
 
     width: 200px;
     height: 200px;
     background-color: #F44628;
+}
 
+#soltar {
+
+    width: 220px;
+    height: 220px;
+    border: solid 2px black;
+}
+
+.soltado {
+
+    background-color: #D62743;
+}
+
+.hover {
+
+    background-color: blue;
 }
