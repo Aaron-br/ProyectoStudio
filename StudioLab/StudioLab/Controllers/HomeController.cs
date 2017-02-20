@@ -33,5 +33,14 @@ namespace StudioLab.Controllers
 
             return View();
         }
+
+        public ActionResult Crud()
+        {
+            ViewBag.Message = "Page for Crud opertations.";
+
+            return View();
+        }
+
+
     }
 }
