@@ -53,6 +53,44 @@
 
 <div id="resultado"></div>
 
+<br />
+<br />
+
+
+<div id="acordeon">
+
+    <h3>Sección 1</h3>
+
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia quam, at aliquet nisi. 
+        Morbi at urna eleifend, finibus turpis sit amet, scelerisque felis. 
+        Integer lacinia, metus et vestibulum ornare, enim nulla mattis justo, et congue nulla neque id ante. </p>
+    </div>
+    <h3>Sección 2</h3>
+
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia quam, at aliquet nisi.
+            Morbi at urna eleifend, finibus turpis sit amet, scelerisque felis.
+            Integer lacinia, metus et vestibulum ornare, enim nulla mattis justo, et congue nulla neque id ante. </p>
+    </div>
+    <h3>Sección 3</h3>
+
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia quam, at aliquet nisi.
+            Morbi at urna eleifend, finibus turpis sit amet, scelerisque felis.
+            Integer lacinia, metus et vestibulum ornare, enim nulla mattis justo, et congue nulla neque id ante. </p>
+    </div>
+
+</div>
+
+<br />
+<br />
+
+<!-- Autocomplete con JQuery-ui -->
+
+<label for="color">Color</label>
+<input type="text" id="color" />
+
 
 @section scripts
 {
@@ -129,6 +167,43 @@
 
 
         });
+
+        var iconos = {
+            header: "ui-icon-circle-arrow-e",
+            activeHeader: "ui-icon-circle-arrow-s"
+
+        }
+
+        //Accordion
+        $('#acordeon').accordion({
+
+            icons: iconos
+
+        });
+        
+
+        var colores = [
+            "rojo",
+            "amarillo",
+            "verde",
+            "naranja",
+            "violeta",
+            "blanco",
+            "negro",
+            "rosa",
+            "morado",
+            "gris",
+            "marron",
+            "azul" 
+        ];
+
+        //AutoComplete
+        $('#color').autocomplete({
+
+            source: colores
+
+        });
+
 
     });
 
