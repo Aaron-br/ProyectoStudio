@@ -92,6 +92,15 @@
 <input type="text" id="color" />
 
 
+<br />
+<br />
+
+<!-- Autocomplete con JQuery-ui y AJAX -->
+
+<label for="color2">Color</label>
+<input type="text" id="color2" />
+
+
 @section scripts
 {
 <script>
@@ -203,6 +212,14 @@
             source: colores
 
         });
+
+
+        //AutoComplete con llamada AJAX a la BD
+        //$('#color2').autocomplete({
+
+        //    source: 
+
+        //});
 
 
     });

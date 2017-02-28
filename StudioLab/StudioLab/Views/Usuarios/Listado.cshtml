@@ -1,0 +1,28 @@
+﻿@model StudioLab.Models.ViewModels.UsuariosViewModel
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Listado de usuarios</h2>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido 1</th>
+                <th>Apellido 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usu in Model.usuarios)
+            {
+              <tr>
+                <td>@usu.nombre</td>
+                <td>@usu.apellido1</td>
+                <td>@usu.apellido2</td>
+              </tr>
+            }
+        </tbody>
+    </table>
+</div>
