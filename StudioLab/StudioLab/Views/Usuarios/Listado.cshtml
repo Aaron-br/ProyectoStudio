@@ -21,6 +21,7 @@
                 <td>@usu.nombre</td>
                 <td>@usu.apellido1</td>
                 <td>@usu.apellido2</td>
+                <td><a href="@Url.Action("BorradoUsuario","Usuarios", new { id = @usu.idUsuario})"><i class="glyphicon glyphicon-remove"></i></a></td>
               </tr>
             }
         </tbody>
