@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "AltaUsuario";
+}
+
+<h2>Alta de Usuarios</h2>
+
+
+<!-- Formulario para la creación de usuarios -->
+
+@using (Html.BeginForm()) {
+
+    @Html.Label("Nombre:") <br /> @Html.TextBox("Nombre")<br />
+    @Html.Label("Apellido 1:") <br /> @Html.TextBox("Apellido1")<br />
+    @Html.Label("Apellido 2:") <br /> @Html.TextBox("Apellido2")<br />
+    @Html.Label("Edad:") <br />@Html.TextBox("Edad")<br />
+    @Html.Label("Rol:") <br /> @Html.TextBox("Rol")<br />
+
+    <br />
+
+    <button type="submit" class="btn btn-default">Submit</button>
+
+}
