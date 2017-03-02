@@ -17,12 +17,13 @@
         <tbody>
             @foreach (var usu in Model.usuarios)
             {
-              <tr>
-                <td>@usu.nombre</td>
-                <td>@usu.apellido1</td>
-                <td>@usu.apellido2</td>
-                <td><a href="@Url.Action("BorradoUsuario","Usuarios", new { id = @usu.idUsuario})"><i class="glyphicon glyphicon-remove"></i></a></td>
-              </tr>
+                    <tr>            
+                      <td>@usu.nombre</td>
+                      <td>@usu.apellido1</td>
+                      <td>@usu.apellido2</td>
+                      <td><a href="@Url.Action("BorradoUsuario","Usuarios", new { id = @usu.idUsuario})" title="Borrar"><i class="glyphicon glyphicon-remove"></i></a></td>
+                      <td><a href="@Url.Action("EditaUsuario","Usuarios", new { id = @usu.idUsuario})" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                    </tr>
             }
         </tbody>
     </table>

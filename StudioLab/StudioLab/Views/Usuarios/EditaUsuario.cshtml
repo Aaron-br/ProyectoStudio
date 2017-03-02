@@ -1,0 +1,39 @@
+﻿@model StudioLab.Models.ViewModels.EditaUsuarioViewModel
+
+@{
+    ViewBag.Title = "EditaUsuario";
+}
+
+<h2>Editar el Usuario</h2>
+
+@using (Html.BeginForm())
+{
+
+
+    @Html.HiddenFor(model => model.IdUsuario)
+
+    @Html.LabelFor(model => model.Nombre) <br />
+    @Html.TextBoxFor(model => model.Nombre)<br />
+    @Html.ValidationMessageFor(model => model.Nombre)<br />
+
+    @Html.LabelFor(model => model.Apellido1) <br />
+    @Html.TextBoxFor(model => model.Apellido1)<br />
+    @Html.ValidationMessageFor(model => model.Apellido1)<br />
+
+    @Html.LabelFor(model => model.Apellido2) <br />
+    @Html.TextBoxFor(model => model.Apellido2)<br />
+    @Html.ValidationMessageFor(model => model.Apellido2)<br />
+
+    @Html.LabelFor(model => model.Edad) <br />
+    @Html.TextBoxFor(model => model.Edad)<br />
+    @Html.ValidationMessageFor(model => model.Edad)<br />
+
+    @Html.LabelFor(model => model.Rol) <br />
+    @Html.TextBoxFor(model => model.Rol)<br />
+    @Html.ValidationMessageFor(model => model.Rol)<br />
+
+    <br />
+
+    <button type="submit" class="btn btn-default">Submit</button>
+
+}
