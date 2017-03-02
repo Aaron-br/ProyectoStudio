@@ -46,3 +46,11 @@
 #seleccionar .ui-selected { background:  #F39814; color: white; }
 #seleccionar { list-style-type: none; margin: 0; padding: 0; width: 60%;}
 #seleccionar li { margin: 3px; padding: 0.4em; font-size: 1.4em; }
+
+
+
+
+/* Estilos para los mensajes de error y los inputs en los formularios*/
+
+.field-validation-error { color: red; font-weight: bold; }
+.input-validation-error { background-color: pink; border: 1px solid red; }

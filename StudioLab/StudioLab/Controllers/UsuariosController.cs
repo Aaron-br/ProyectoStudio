@@ -42,26 +42,32 @@ namespace StudioLab.Controllers
         }
 
         [HttpPost]
-        public ActionResult AltaUsuario(string Nombre, string Apellido1, string Apellido2, string Edad, string Rol)
+        public ActionResult AltaUsuario(AltaUsuarioViewModel model)
         {
 
             myDB = new StudioLabDBEntities();
             usuAlta = new Usuarios();
 
+            //Esto comprueba si son correctos los datos del formulario
+            if (ModelState.IsValid) {
 
-            //Creamos el usuario con los datos recibidos
-            usuAlta.nombre = Nombre;
-            usuAlta.apellido1 = Apellido1;
-            usuAlta.apellido2 = Apellido2;
-            usuAlta.edad = Int32.Parse(Edad);
-            usuAlta.usuarioRol = Int32.Parse(Rol);
+                //Creamos el usuario con los datos recibidos
+                usuAlta.nombre = model.Nombre;
+                usuAlta.apellido1 = model.Apellido1;
+                usuAlta.apellido2 = model.Apellido2;
+                usuAlta.edad = Int32.Parse(model.Edad);
+                usuAlta.usuarioRol = Int32.Parse(model.Rol);
 
-            //Añadimos a la BD
-            myDB.Usuarios.Add(usuAlta);
+                //Añadimos a la BD
+                myDB.Usuarios.Add(usuAlta);
+                myDB.SaveChanges();
 
-            myDB.SaveChanges();
+                return RedirectToAction("Listado");
+            }
+          
 
-            return RedirectToAction("Listado");
+            return View();
+         
 
         }
 

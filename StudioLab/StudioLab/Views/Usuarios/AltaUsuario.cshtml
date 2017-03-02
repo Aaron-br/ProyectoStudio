@@ -1,4 +1,4 @@
-﻿
+﻿@model StudioLab.Models.ViewModels.AltaUsuarioViewModel
 @{
     ViewBag.Title = "AltaUsuario";
 }
@@ -10,11 +10,25 @@
 
 @using (Html.BeginForm()) {
 
-    @Html.Label("Nombre:") <br /> @Html.TextBox("Nombre")<br />
-    @Html.Label("Apellido 1:") <br /> @Html.TextBox("Apellido1")<br />
-    @Html.Label("Apellido 2:") <br /> @Html.TextBox("Apellido2")<br />
-    @Html.Label("Edad:") <br />@Html.TextBox("Edad")<br />
-    @Html.Label("Rol:") <br /> @Html.TextBox("Rol")<br />
+    @Html.LabelFor(model => model.Nombre) <br /> 
+    @Html.TextBoxFor(model => model.Nombre)<br />
+    @Html.ValidationMessageFor(model => model.Nombre)<br />
+
+    @Html.LabelFor(model => model.Apellido1) <br /> 
+    @Html.TextBoxFor(model => model.Apellido1)<br />
+    @Html.ValidationMessageFor(model => model.Apellido1)<br />
+
+    @Html.LabelFor(model => model.Apellido2) <br /> 
+    @Html.TextBoxFor(model => model.Apellido2)<br />
+    @Html.ValidationMessageFor(model => model.Apellido2)<br />
+
+    @Html.LabelFor(model => model.Edad) <br />
+    @Html.TextBoxFor(model => model.Edad)<br />
+    @Html.ValidationMessageFor(model => model.Edad)<br />
+
+    @Html.LabelFor(model => model.Rol) <br /> 
+    @Html.TextBoxFor(model => model.Rol)<br />
+    @Html.ValidationMessageFor(model => model.Rol)<br />
 
     <br />
 
