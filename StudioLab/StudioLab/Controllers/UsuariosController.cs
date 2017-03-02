@@ -105,9 +105,9 @@ namespace StudioLab.Controllers
             //Recuperamos de la BD el usuario que queremos editar
             usuEditar = myDB.Usuarios.Where(u => u.idUsuario == id).FirstOrDefault();
 
-            usu.Nombre = usuEditar.nombre;
-            usu.Apellido1 = usuEditar.apellido1;
-            usu.Apellido2 = usuEditar.apellido2;
+            usu.Nombre = usuEditar.nombre.TrimEnd();
+            usu.Apellido1 = usuEditar.apellido1.TrimEnd();
+            usu.Apellido2 = usuEditar.apellido2.TrimEnd();
             usu.Edad = usuEditar.edad.ToString();
             usu.Rol = usuEditar.usuarioRol.ToString();
             usu.IdUsuario = id;
