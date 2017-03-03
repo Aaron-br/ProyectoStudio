@@ -28,3 +28,21 @@
         </tbody>
     </table>
 </div>
+
+<div id="page-selection" class="text-center"></div>
+
+<!-- Script para la paginacion (bootpag) -->
+
+
+@section scripts {
+
+        <script>
+            // init bootpag
+            $('#page-selection').bootpag({
+                total: 5
+            }).on("page", function (event, /* page number here */ num) {
+                //$("#content").html("Insert content"); // some ajax content loading...
+            });
+        </script>
+
+}
