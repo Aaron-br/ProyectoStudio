@@ -34,6 +34,7 @@ namespace StudioLab.Controllers
 
             return View(vm);
         }
+
         [HttpGet] //Este es el valor por defecto del método
         public ActionResult AltaUsuario()
         {
