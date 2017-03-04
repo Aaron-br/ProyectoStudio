@@ -11,5 +11,7 @@ namespace StudioLab.Models.ViewModels
         //Definimos una lista de Usuarios de la BD
         public List <Usuarios> usuarios { get; set; }
 
+        public int num_Paginas { get; set; }
+
     }
 }

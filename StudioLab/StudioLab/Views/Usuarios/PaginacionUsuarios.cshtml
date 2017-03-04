@@ -1,25 +1,26 @@
 ﻿@model StudioLab.Models.ViewModels.UsuariosViewModel
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido 1</th>
-            <th>Apellido 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var usu in Model.usuarios)
-            {
+<div class="table-responsive">
+    <table class="table">
+        <thead>
             <tr>
-                <td>@usu.nombre</td>
-                <td>@usu.apellido1</td>
-                <td>@usu.apellido2</td>
-                <td><a href="@Url.Action("BorradoUsuario","Usuarios", new { id = @usu.idUsuario})" title="Borrar"><i class="glyphicon glyphicon-remove"></i></a></td>
-                <td><a href="@Url.Action("EditaUsuario","Usuarios", new { id = @usu.idUsuario})" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                <th>Nombre</th>
+                <th>Apellido 1</th>
+                <th>Apellido 2</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var usu in Model.usuarios)
+            {
+                <tr>
+                    <td>@usu.nombre</td>
+                    <td>@usu.apellido1</td>
+                    <td>@usu.apellido2</td>
+                    <td><a href="@Url.Action("BorradoUsuario","Usuarios", new { id = @usu.idUsuario})" title="Borrar"><i class="glyphicon glyphicon-remove"></i></a></td>
+                    <td><a href="@Url.Action("EditaUsuario","Usuarios", new { id = @usu.idUsuario})" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 

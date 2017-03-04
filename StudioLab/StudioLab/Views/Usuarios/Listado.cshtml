@@ -5,13 +5,14 @@
 
 <h2>Listado de usuarios</h2>
 
-<div class="table-responsive">
+<div id="content">
     
     @Html.Partial("PaginacionUsuarios",Model)
 
 </div>
-
-
+<!-- Guardamos el numero de páginas que obtenemos a partir
+    del número de registros y el tamaño de pagina (20) -->
+<input id="numPaginas" style="display:none" value="@Model.num_Paginas"/>
 
 <div id="page-selection" class="text-center"></div>
 
@@ -19,13 +20,35 @@
 
         <!-- Script para la paginacion (bootpag) -->
 
-        <script>
+    <script>
+
+        $(document).ready(function () {
+
             // init bootpag
             $('#page-selection').bootpag({
-                total: 5
-            }).on("page", function (event, /* page number here */ num) {
-                //$("#content").html("Insert content"); // some ajax content loading...
-            });
-        </script>
+
+                total: $('#numPaginas').val(),
+                maxVisible: 5
+
+                    }).on("page", function (event, /* page number here */ num) {
+
+                            $.ajax({
+                                type: "GET",
+                                url: '@Url.Action("PaginacionUsuarios", "Usuarios")',
+                                data: { page: num },
+                                success: function (data) {
+
+                                    $("#content").html(data); // some ajax content loading...
+
+                                },
+                                error: function () {
+                                    console.log("Problem with Ajax petition.")
+                                }
+
+                            });
+                    });
+        });
+
+    </script>
 
 }

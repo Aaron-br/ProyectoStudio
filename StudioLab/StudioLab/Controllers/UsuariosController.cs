@@ -18,6 +18,8 @@ namespace StudioLab.Controllers
         private Usuarios usuAlta;
         private Usuarios usuEditar;
 
+     
+
         public ActionResult Listado()
         {
 
@@ -28,12 +30,50 @@ namespace StudioLab.Controllers
 
             myDB = new StudioLabDBEntities();
 
-            //Asignamos al viewModel la lista de usuario proveniente de la BD
-            vm.usuarios = myDB.Usuarios.ToList();
 
+            //Obtenemos el número de registro totales y calculamos las paginas que 
+            //necesitamos
+         
+            if (myDB.Usuarios.ToList().Count > 20 && myDB.Usuarios.ToList().Count > 0) {
 
+                vm.num_Paginas = myDB.Usuarios.ToList().Count / 20;
+
+                if (myDB.Usuarios.ToList().Count % 20 > 0)
+                {
+                    vm.num_Paginas++;
+                }
+
+                vm.usuarios = myDB.Usuarios.Take(20).ToList();
+
+            }
+            else {
+
+                vm.num_Paginas = 0;
+                vm.usuarios = myDB.Usuarios.ToList();
+            }
+
+           
             return View(vm);
         }
+
+        public ActionResult PaginacionUsuarios(int page) {
+
+            //Definimos el viewModel creado para los usuarios
+            //Y lo rellenamos de datos de la BD.
+            UsuariosViewModel vm;
+            vm = new UsuariosViewModel();
+
+            myDB = new StudioLabDBEntities();
+
+            //Asignamos al viewModel la lista de usuario proveniente de la BD
+            vm.usuarios = myDB.Usuarios.OrderBy(u => u.idUsuario).Skip((page - 1)*20).Take(20).ToList();
+
+            return PartialView(vm);
+
+        }
+
+
+
 
         [HttpGet] //Este es el valor por defecto del método
         public ActionResult AltaUsuario()
