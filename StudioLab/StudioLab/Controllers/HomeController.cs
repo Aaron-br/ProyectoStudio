@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudioLab.Models;
+using StudioLab.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,10 @@ namespace StudioLab.Controllers
 {
     public class HomeController : Controller
     {
+
+
+        private StudioLabDBEntities myDB;
+
         public ActionResult Index()
         {
             return View();
@@ -40,6 +46,34 @@ namespace StudioLab.Controllers
 
             return View();
         }
+        public ActionResult Helpers()
+        {
+            ViewBag.Message = "Page for Helpers.";
+
+            HelpersViewModel vm = new HelpersViewModel();
+            myDB = new StudioLabDBEntities();
+            vm.listRoles = new List<SelectListItem>();
+         
+            //Obtenemos los objetos de rol de la BD y rellenamos el viewModel
+            foreach (var rol in myDB.Roles) {
+
+                vm.listRoles.Add(new SelectListItem
+                {
+                    Text = rol.nombreRol,
+                    Value = rol.idRol.ToString()
+                });
+            }
+
+            return View(vm);
+        }
+
+        public ActionResult Buscador()
+        {
+            ViewBag.Message = "Buscar por terminos.";
+
+            return View();
+        }
+
 
 
     }

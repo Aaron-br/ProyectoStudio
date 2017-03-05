@@ -1,0 +1,11 @@
+﻿@model StudioLab.Models.ViewModels.HelpersViewModel
+@{
+    ViewBag.Title = "Helpers";
+}
+
+<h2>Helpers</h2>
+
+
+<!-- Desplegable -->
+
+@Html.DropDownListFor(Model => Model.listRoles, Model.listRoles,"Roles")
