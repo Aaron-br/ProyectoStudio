@@ -13,5 +13,7 @@ namespace StudioLab.Models.ViewModels
 
         public int num_Paginas { get; set; }
 
+        public int num_Registros { get; set; }
+
     }
 }

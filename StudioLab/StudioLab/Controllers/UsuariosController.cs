@@ -73,6 +73,23 @@ namespace StudioLab.Controllers
         }
 
 
+        public ActionResult BuscarUsuarios(string valor)
+        {
+
+            //Definimos el viewModel creado para los usuarios
+            //Y lo rellenamos de datos de la BD.
+            UsuariosViewModel vm;
+            vm = new UsuariosViewModel();
+
+            myDB = new StudioLabDBEntities();
+
+            //Asignamos al viewModel la lista de usuario proveniente de la BD
+            vm.usuarios = myDB.Usuarios.OrderBy(u => u.nombre).Where(u => u.nombre.Contains(valor)).ToList();
+            vm.num_Registros = vm.usuarios.Count;
+
+            return PartialView("~/Views/Usuarios/PaginacionUsuarios.cshtml", vm);
+
+        }
 
 
         [HttpGet] //Este es el valor por defecto del método
@@ -110,9 +127,7 @@ namespace StudioLab.Controllers
 
             return View();
          
-
         }
-
 
 
         public ActionResult BorradoUsuario(int id)

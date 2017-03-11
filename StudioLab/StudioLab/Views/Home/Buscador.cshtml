@@ -1,7 +1,71 @@
-﻿
+﻿@model StudioLab.Models.ViewModels.UsuariosViewModel
 @{
+
     ViewBag.Title = "Buscador";
 }
 
 <h2>Buscador</h2>
 
+
+<!-- Input para buscar en la BD por nombre. 
+     Los coincidentes aparecerán en un div, que paginará 
+     según los resultados. -->
+
+
+
+<label for="buscar">Buscar usuario: </label><input id="buscar" type="text"/>
+
+<br />
+
+
+<h4>Resultado de la busqueda:</h4>
+
+<div id="Contenido"></div>
+
+
+    @section scripts {
+
+        <!-- Script para la busqueda, petición AJAX -->
+
+        <script>
+
+            $(document).ready(function () {
+
+
+                $("#buscar").on("change paste keyup", function () {
+
+                    var Valor = $('#buscar').val();
+
+                    if (Valor != "") {
+
+                        $.ajax({
+                            type: "GET",
+                            url: '@Url.Action("BuscarUsuarios", "Usuarios")',
+                            data: { valor: Valor },
+                            success: function (data) {
+
+                                $("#Contenido").html(data);
+                                if ($("#numRegistros").val() == 0) { $("#Contenido").empty(); }
+
+                            },
+                            error: function () {
+                                console.log("Problem with Ajax petition.")
+                            }
+
+                        });
+
+                    } else {
+
+                        //Vaciamos lo que pueda haber de resultados anteriores en el div 
+                        $("#Contenido").empty();
+
+                    }
+
+                });
+
+
+            });
+
+        </script>
+
+    }

@@ -6,6 +6,27 @@
 <h2>Helpers</h2>
 
 
-<!-- Desplegable -->
+<!-- Desplegable con Helper -->
 
 @Html.DropDownListFor(Model => Model.listRoles, Model.listRoles,"Roles")
+
+
+<br />
+<br />
+
+<!-- Usando bootstrap -->
+
+<div class="form-group">
+
+    <select class="form-control" name="" id="option">
+
+        <option value="">Roles</option>
+
+        @foreach (var rol in Model.listRoles)
+        {
+            <option value="@rol.Value">@rol.Text.ToUpper()</option>
+        }
+    </select>
+
+</div>
+
