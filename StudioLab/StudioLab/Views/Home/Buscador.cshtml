@@ -45,7 +45,13 @@
                             success: function (data) {
 
                                 $("#Contenido").html(data);
-                                if ($("#numRegistros").val() == 0) { $("#Contenido").empty(); }
+
+                                if ($("#numRegistros").val() == 0) {
+
+                                    //Si no hay resultado borramos el esqueleto de la tabla
+                                    $("#Contenido").empty();
+
+                                }
 
                             },
                             error: function () {
