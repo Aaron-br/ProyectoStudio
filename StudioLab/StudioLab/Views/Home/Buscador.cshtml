@@ -22,12 +22,65 @@
 
 <div id="Contenido"></div>
 
+<!-- Paginador por si el resultado fuera necesario paginarlo -->
+<div id="page-selection" class="text-center"></div>
+
 
     @section scripts {
 
         <!-- Script para la busqueda, petición AJAX -->
 
+
         <script>
+
+            $(document).ready(function () {
+
+
+                $("#buscar").on("change paste keyup", function () {
+
+                    var Valor = $('#buscar').val();
+                    
+                    if (Valor != "") {
+
+                        $.ajax({
+                            type: "GET",
+                            url: '@Url.Action("BuscarUsuarios", "Usuarios")',
+                            data: { valor: Valor },
+                            success: function (data) {
+
+                                $("#Contenido").html(data);
+                        
+                                if ($("#numRegistros").val() == 0) {
+
+                                    //Si no hay resultado borramos el esqueleto de la tabla
+                                    $("#Contenido").empty();
+
+                                }
+
+                            },
+                            error: function () {
+                                console.log("Problem with Ajax petition.");
+                            }
+
+                        });
+
+                    } else {
+
+                        //Vaciamos lo que pueda haber de resultados anteriores en el div
+                        $("#Contenido").empty();
+
+                    }
+
+                });
+
+            });
+
+        </script>
+
+
+
+
+        @*<script>
 
             $(document).ready(function () {
 
@@ -38,31 +91,44 @@
 
                     if (Valor != "") {
 
-                        $.ajax({
-                            type: "GET",
-                            url: '@Url.Action("BuscarUsuarios", "Usuarios")',
-                            data: { valor: Valor },
-                            success: function (data) {
+                        // init bootpag
+                        $('#page-selection').bootpag({
 
-                                $("#Contenido").html(data);
+                            total: 0,
+                            maxVisible: 5
 
-                                if ($("#numRegistros").val() == 0) {
+                        }).on("page", function (event, /* page number here */ num) {
 
-                                    //Si no hay resultado borramos el esqueleto de la tabla
-                                    $("#Contenido").empty();
+                            $.ajax({
+                                type: "GET",
+                                url: '@Url.Action("BuscarUsuarios", "Usuarios")',
+                                data: { page: num, valor: Valor },
+                                success: function (data) {
 
+                                    $("#Contenido").html(data);
+
+                                    //$(this).bootpag({ total: $('#numPaginas').val(), maxVisible: 5 });
+
+
+                                    if ($("#numRegistros").val() == 0) {
+
+                                        //Si no hay resultado borramos el esqueleto de la tabla
+                                        $("#Contenido").empty();
+
+                                    }
+
+                                },
+                                error: function () {
+                                    console.log("Problem with Ajax petition.")
                                 }
 
-                            },
-                            error: function () {
-                                console.log("Problem with Ajax petition.")
-                            }
-
+                            });
                         });
+
 
                     } else {
 
-                        //Vaciamos lo que pueda haber de resultados anteriores en el div 
+                        //Vaciamos lo que pueda haber de resultados anteriores en el div
                         $("#Contenido").empty();
 
                     }
@@ -72,6 +138,8 @@
 
             });
 
-        </script>
+        </script>*@
+
+
 
     }
