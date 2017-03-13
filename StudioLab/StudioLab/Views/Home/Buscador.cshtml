@@ -13,7 +13,7 @@
 
 
 
-<label for="buscar">Buscar usuario: </label><input id="buscar" type="text"/>
+<label for="buscar">Buscar usuario: </label><input id="buscar" type="text">
 
 <br />
 
@@ -36,10 +36,85 @@
             $(document).ready(function () {
 
 
-                $("#buscar").on("change paste keyup", function () {
+                $('#buscar').on("keyup",  function () {
 
+                    $('#page-selection').off("page");
+     
+                    //Recogemos el valor que hay en el input
                     var Valor = $('#buscar').val();
-                    
+                    $("#page-selection").empty();
+
+                    if (Valor != "") {
+
+                            $.ajax({
+                                type: "GET",
+                                url: '@Url.Action("BuscarUsuarios", "Usuarios")',
+                                data: { valor: Valor },
+                                success: function (data) {
+
+                                    $("#Contenido").html(data);
+                                    if ($("#numRegistros").val() == 0)
+                                    {
+                                        $("#Contenido").empty();
+                                        $("#page-selection").empty();
+                                    }
+
+                                    if ($("#numRegistros").val() > 20) {
+
+                                        //Preparamos la paginacion
+                                        $('#page-selection').bootpag({
+
+                                            total: $("#numPaginas").val(),
+                                            page: 1,
+                                            maxVisible: 5
+
+
+                                        }).on("page", function (event, /* page number here */ num) {
+
+                                            alert("pagina");
+
+                                            $.ajax({
+                                                type: "GET",
+                                                url: '@Url.Action("BuscarUsuariosPaginados", "Usuarios")',
+                                                data: { page: num, valor: Valor },
+                                                success: function (data) {
+
+                                                    $("#Contenido").html(data);
+
+                                                },
+                                                error: function () {
+                                                    console.log("Problem with Ajax petition.")
+                                                }
+
+                                            });
+
+
+                                        });
+                                        
+                                    }
+
+                                },
+                                error: function () {
+                                    console.log("Problem with Ajax petition.");
+                                }
+
+                            });
+
+                    } else {
+
+                          //Vaciamos lo que pueda haber de resultados anteriores en el div
+                        $("#Contenido").empty();
+                        $("#page-selection").empty();
+               
+                   }
+
+
+
+
+
+                     @*$("#page-selection").empty();
+
+
                     if (Valor != "") {
 
                         $.ajax({
@@ -49,13 +124,6 @@
                             success: function (data) {
 
                                 $("#Contenido").html(data);
-                        
-                                if ($("#numRegistros").val() == 0) {
-
-                                    //Si no hay resultado borramos el esqueleto de la tabla
-                                    $("#Contenido").empty();
-
-                                }
 
                             },
                             error: function () {
@@ -64,12 +132,61 @@
 
                         });
 
+
+                        if ($("#numRegistros").val() == 0) {
+
+                            //Si no hay resultado borramos el esqueleto de la tabla
+                            $("#Contenido").empty();
+                            $("#page-selection").empty();
+
+                        }
+
+                        //Si el numero de registros es mayor a 20
+                        //Montamos la paginacion
+
+                        if ($("#numRegistros").val() > 20) {
+
+                            $('#page-selection').bootpag({
+
+                                total: $("#numPaginas").val(),
+                                page: 1,
+                                maxVisible: 5
+
+
+                            }).on("page", function (event, /* page number here */ num) {
+
+
+                                $.ajax({
+                                    type: "GET",
+                                    url: '@Url.Action("BuscarUsuariosPaginados", "Usuarios")',
+                                    data: { page: num, valor: Valor },
+                                    success: function (data) {
+
+                                        $("#Contenido").html(data);
+
+                                    },
+                                    error: function () {
+                                        console.log("Problem with Ajax petition.")
+                                    }
+
+                                });
+
+
+
+                            });
+                        }
+
+
+
+
                     } else {
 
                         //Vaciamos lo que pueda haber de resultados anteriores en el div
                         $("#Contenido").empty();
+                        $("#page-selection").empty();
 
-                    }
+
+                    }*@
 
                 });
 

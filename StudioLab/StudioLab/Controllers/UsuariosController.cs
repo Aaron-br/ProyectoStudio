@@ -74,11 +74,11 @@ namespace StudioLab.Controllers
         }
 
 
-           public ActionResult BuscarUsuarios(string valor)
-           {
+        public ActionResult BuscarUsuarios(string valor)
+        {
 
-            ////Definimos el viewModel creado para los usuarios
-            ////Y lo rellenamos de datos de la BD.
+            //Definimos el viewModel creado para los usuarios
+            //Y lo rellenamos de datos de la BD.
             UsuariosViewModel vm;
             vm = new UsuariosViewModel();
 
@@ -109,9 +109,56 @@ namespace StudioLab.Controllers
 
             }
 
+            if (vm.usuarios.Count > 20) {
+
+                vm.usuarios = vm.usuarios.Take(20).ToList();
+
+            }
+
             return PartialView("~/Views/Usuarios/PaginacionUsuarios.cshtml", vm);
 
         }
+
+
+
+        public ActionResult BuscarUsuariosPaginados(int page, string valor) {
+
+
+            //Definimos el viewModel creado para los usuarios
+            //Y lo rellenamos de datos de la BD.
+            UsuariosViewModel vm;
+            vm = new UsuariosViewModel();
+
+            myDB = new StudioLabDBEntities();
+
+            vm.usuarios = myDB.Usuarios.OrderBy(u => u.nombre).Where(u => u.nombre.Contains(valor)).ToList();
+            vm.num_Registros = vm.usuarios.Count;
+
+            if (vm.usuarios.Count <= 20)
+            {
+                vm.num_Paginas = 0;
+            }
+            else
+            {
+
+                vm.num_Paginas = vm.usuarios.Count / 20;
+
+                if (vm.usuarios.Count % 20 > 0)
+                {
+
+                    vm.num_Paginas++;
+                }
+
+            }
+
+            //Asignamos al viewModel la lista de usuario proveniente de la BD
+            vm.usuarios = vm.usuarios.OrderBy(u => u.nombre).Skip((page - 1) * 20).Take(20).ToList();
+
+            return PartialView("~/Views/Usuarios/PaginacionUsuarios.cshtml", vm);
+
+
+        }
+
 
 
         [HttpGet] //Este es el valor por defecto del método
