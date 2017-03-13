@@ -38,6 +38,7 @@
 
                 $('#buscar').on("keyup",  function () {
 
+                    //Desactivamos los eventos para que no se acumulen
                     $('#page-selection').off("page");
      
                     //Recogemos el valor que hay en el input
@@ -71,8 +72,7 @@
 
                                         }).on("page", function (event, /* page number here */ num) {
 
-                                            alert("pagina");
-
+                                         
                                             $.ajax({
                                                 type: "GET",
                                                 url: '@Url.Action("BuscarUsuariosPaginados", "Usuarios")',
